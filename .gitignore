@@ -1,0 +1,30 @@
+# MetaTrader temporary/generated files
+*.ex5
+*.ex4
+*.log
+*.dat
+*.tmp
+
+# MetaEditor generated files
+*.bak
+
+# Tester/cache files
+Tester/
+MQL5/Logs/
+MQL5/Profiles/
+
+# Operating system files
+Thumbs.db
+Desktop.ini
+
+# Editor/IDE files
+.vscode/
+.idea/
+
+# Python/cache files if used for research
+__pycache__/
+*.pyc
+
+# Local/private configuration
+.env
+*.local
