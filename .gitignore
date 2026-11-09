@@ -25,6 +25,9 @@ Desktop.ini
 __pycache__/
 *.pyc
 
+# Phase 2B raw Dukascopy candle archive (regenerable from download_dukascopy.py)
+Research/Phase-2B/data/raw/dukascopy/
+
 # Local/private configuration
 .env
 *.local
