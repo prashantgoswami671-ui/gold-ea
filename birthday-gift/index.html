@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07040f">
+<title>For Her — Happy Birthday</title>
+<meta name="description" content="A little something, made by hand.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💛</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Great+Vibes&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ambient layers -->
+<canvas id="stars" aria-hidden="true"></canvas>
+<canvas id="fx" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+<div class="scroll-progress" aria-hidden="true"><i id="scroll-bar"></i></div>
+
+<!-- ================= INTRO ================= -->
+<div class="intro" id="intro">
+  <div class="intro-inner">
+    <p class="intro-kicker">a letter, a jar, and a few other things</p>
+
+    <button class="envelope" id="envelope" aria-label="Open your gift">
+      <span class="env-back"></span>
+      <span class="env-letter">
+        <span class="env-script">Happy Birthday</span>
+        <span class="env-rule"></span>
+        <span class="env-small">open me</span>
+      </span>
+      <span class="env-front">
+        <span class="env-label">
+          <em>for</em>
+          <strong id="env-front-name">Ananya</strong>
+        </span>
+      </span>
+      <span class="env-flap"></span>
+      <span class="env-seal"><span>♥</span></span>
+    </button>
+
+    <p class="intro-hint" id="intro-hint">tap the envelope</p>
+  </div>
+  <div class="intro-petals" aria-hidden="true"></div>
+</div>
+
+<!-- ================= EXPERIENCE ================= -->
+<main id="experience" class="experience" hidden>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-halo" aria-hidden="true"></div>
+    <div class="hero-content">
+      <p class="eyebrow reveal">a little something, just for you</p>
+      <h1 class="hero-title">
+        <span class="script reveal" data-delay="1">Happy Birthday,</span>
+        <span class="hero-name reveal" data-delay="2" id="hero-name">Ananya</span>
+      </h1>
+      <p class="hero-line" id="hero-line"></p>
+      <button class="btn-ghost reveal" data-delay="4" id="begin">
+        walk in <span class="arrow">↓</span>
+      </button>
+    </div>
+    <div class="hero-bottom">
+      <span>scroll gently</span>
+      <i></i>
+    </div>
+  </section>
+
+  <!-- SCRAPBOOK -->
+  <section class="section memories" id="memories">
+    <div class="sec-head">
+      <p class="sec-kicker">chapter one</p>
+      <h2>Our little museum</h2>
+      <p class="sec-sub">A few moments I kept, even when I didn't tell you I was keeping them.</p>
+    </div>
+    <div class="scrapbook" id="scrapbook"></div>
+    <p class="scrap-hint"><span>drag</span> or <span>scroll</span> sideways · tap a photo</p>
+  </section>
+
+  <!-- WISH JAR -->
+  <section class="section jar-sec" id="wishes">
+    <div class="sec-head">
+      <p class="sec-kicker">chapter two</p>
+      <h2>The wish jar</h2>
+      <p class="sec-sub">Nine little notes I couldn't say out loud. Tap one to let it out.</p>
+    </div>
+
+    <div class="jar-stage">
+      <div class="jar">
+        <div class="jar-lid" aria-hidden="true"></div>
+        <div class="jar-neck" aria-hidden="true"></div>
+        <div class="jar-body" id="jar-body">
+          <div class="jar-glow" aria-hidden="true"></div>
+          <div class="orbs" id="orbs"></div>
+        </div>
+        <div class="jar-shine" aria-hidden="true"></div>
+        <div class="jar-label" aria-hidden="true"><span>wishes</span><em>for you</em></div>
+      </div>
+      <div class="jar-side">
+        <p class="jar-count"><strong id="jar-count">0</strong> <span id="jar-total">of 9</span> opened</p>
+        <p class="jar-note" id="jar-note">Some of these are confessions. Some are just true.</p>
+        <div class="jar-dots" id="jar-dots" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MELODY GAME -->
+  <section class="section game-sec" id="game">
+    <div class="sec-head">
+      <p class="sec-kicker">chapter three</p>
+      <h2>Sing it back</h2>
+      <p class="sec-sub">Five stars, five notes. I'll play a short melody — tap it back in the same order. One more note every round.</p>
+    </div>
+
+    <div class="melody-shell" id="melody-shell">
+      <div class="melody-hud">
+        <div class="hud-left">
+          <span class="hud-num" id="round-num">1</span>
+          <span class="hud-of">/ <span id="round-total">5</span> rounds</span>
+        </div>
+        <div class="melody-dots" id="melody-dots" aria-hidden="true"></div>
+      </div>
+
+      <div class="melody-stage" id="melody-stage">
+        <svg class="melody-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <polyline points="50,16 18,40 33,78 67,78 82,40 50,16"
+                    fill="none" stroke="rgba(242,205,149,.2)" stroke-width="1"
+                    vector-effect="non-scaling-stroke"/>
+        </svg>
+
+        <button class="star" type="button" aria-label="Star one" data-note="0"
+                style="--x:50%;--y:16%;--c:#ffb3c9;--c2:#e2618f">
+          <span class="star-spark"></span><span class="star-core"></span>
+        </button>
+        <button class="star" type="button" aria-label="Star two" data-note="1"
+                style="--x:18%;--y:40%;--c:#ffe0b0;--c2:#e0a45f">
+          <span class="star-spark"></span><span class="star-core"></span>
+        </button>
+        <button class="star" type="button" aria-label="Star three" data-note="2"
+                style="--x:82%;--y:40%;--c:#d8ccff;--c2:#9d86ff">
+          <span class="star-spark"></span><span class="star-core"></span>
+        </button>
+        <button class="star" type="button" aria-label="Star four" data-note="3"
+                style="--x:33%;--y:78%;--c:#ffcdb8;--c2:#ff8f6f">
+          <span class="star-spark"></span><span class="star-core"></span>
+        </button>
+        <button class="star" type="button" aria-label="Star five" data-note="4"
+                style="--x:67%;--y:78%;--c:#c9f0e4;--c2:#6fc6b8">
+          <span class="star-spark"></span><span class="star-core"></span>
+        </button>
+
+        <p class="melody-status" id="melody-status" aria-live="polite">listen…</p>
+
+        <div class="game-overlay" id="melody-start">
+          <div class="overlay-card">
+            <span class="overlay-icon">✦</span>
+            <h3>Listen first</h3>
+            <p>I'll light up a few stars and play their notes. Then it's your turn — tap them back. The melody grows by one note each round.</p>
+            <button class="btn-solid" id="melody-play">start listening</button>
+          </div>
+        </div>
+
+        <div class="game-overlay hidden" id="melody-win">
+          <div class="overlay-card win">
+            <span class="overlay-icon">♥</span>
+            <h3>You remembered all of it.</h3>
+            <p id="melody-secret"></p>
+            <button class="btn-solid" id="to-letter">there's one more thing →</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="melody-foot">
+        <button class="btn-ghost melody-replay" id="melody-replay" disabled>hear it again</button>
+        <p class="melody-hint">tap the stars · or press 1–5</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LETTER -->
+  <section class="section letter-sec" id="letter">
+    <div class="letter-glow" aria-hidden="true"></div>
+    <article class="letter-paper" id="letter-paper">
+      <p class="letter-date" id="letter-date">20 November</p>
+      <h2 class="letter-greeting" id="letter-greeting">Dear Anu,</h2>
+      <div class="letter-body" id="letter-body"></div>
+      <p class="letter-sign" id="letter-sign">Yours, always</p>
+      <span class="letter-stamp" aria-hidden="true">♥</span>
+    </article>
+    <button class="btn-ghost letter-next" id="to-finale">there's one last thing <span class="arrow">→</span></button>
+  </section>
+
+  <!-- FINALE -->
+  <section class="section finale" id="finale">
+    <canvas id="fireworks" aria-hidden="true"></canvas>
+    <div class="finale-inner">
+      <div class="finale-card" id="finale-card">
+        <p class="eyebrow">and finally</p>
+        <h2 class="finale-q" id="final-q">One last thing…</h2>
+        <div class="finale-btns" id="final-btns">
+          <button class="btn-solid yes" id="yes">yes</button>
+          <button class="btn-outline no" id="no">no</button>
+        </div>
+        <div class="final-answer hidden" id="final-answer">
+          <span class="answer-heart" aria-hidden="true">♥</span>
+          <p id="final-msg"></p>
+          <button class="btn-ghost" id="replay">watch it again <span class="arrow">↺</span></button>
+        </div>
+      </div>
+      <footer class="final-footer">
+        <span id="final-footer-text">made by hand, with a ridiculous amount of love</span>
+      </footer>
+    </div>
+  </section>
+
+</main>
+
+<!-- MUSIC -->
+<button class="music-btn" id="music-btn" aria-label="Toggle music" aria-pressed="false">
+  <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  <span class="music-label">music</span>
+</button>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Memory" aria-hidden="true">
+  <button class="lb-close" id="lb-close" aria-label="Close">×</button>
+  <button class="lb-nav prev" id="lb-prev" aria-label="Previous">‹</button>
+  <figure class="lb-figure">
+    <div class="lb-img-wrap"><img id="lb-img" alt=""></div>
+    <figcaption>
+      <p id="lb-cap"></p>
+      <em id="lb-date"></em>
+    </figcaption>
+  </figure>
+  <button class="lb-nav next" id="lb-next" aria-label="Next">›</button>
+</div>
+
+<!-- WISH MODAL -->
+<div class="wish-modal" id="wish-modal" role="dialog" aria-modal="true" aria-label="A wish" aria-hidden="true">
+  <div class="wish-card" id="wish-card">
+    <button class="wish-close" id="wish-close" aria-label="Close">×</button>
+    <span class="wish-glyph" aria-hidden="true">✦</span>
+    <h3 id="wish-title"></h3>
+    <p id="wish-text"></p>
+    <div class="wish-sign">— me</div>
+  </div>
+</div>
+
+<noscript>
+  <div style="position:fixed;inset:0;display:grid;place-items:center;background:#07040f;color:#fff4e9;font-family:Georgia,serif;text-align:center;padding:2rem;z-index:999">
+    <p>This little gift needs JavaScript turned on. 💛</p>
+  </div>
+</noscript>
+
+<script src="config.js"></script>
+<script src="js/core.js"></script>
+<script src="js/gift.js"></script>
+<script src="js/play.js"></script>
+</body>
+</html>
